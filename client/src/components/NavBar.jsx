@@ -109,7 +109,7 @@ export default function NavBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{ backgroundColor: '#A8E890'}}>
+        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -120,9 +120,9 @@ export default function NavBar() {
               ...(open && { display: 'none' }),
             }}
           >
-            <MenuIcon sx={{ color: 'black'}} />
+            <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" color="black">
+          <Typography variant="h6" noWrap component="div">
             Scouts Ter Alwina - Aanwezigheden
           </Typography>
         </Toolbar>
