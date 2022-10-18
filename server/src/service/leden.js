@@ -3,7 +3,7 @@ const { getChildLogger } = require("../core/logging");
 const repository = require('../repository/leden');
 
 const debugLog = (message, meta = {}) => {
-    if (!this.logger) this.logger = getChildLogger("event-service");
+    if (!this.logger) this.logger = getChildLogger("leden-service");
     this.logger.debug(message, meta);
 };
 
@@ -27,9 +27,9 @@ const create = async ({firstname, lastname, tak}) => {
     return await repository.create({firstname, lastname, tak});
 };
 
-const updateAanwezigheid = async (id, {firstname, lastname, tak}) => {
-    debugLog('Updating leden', {id, firstname, lastname, tak});
-    return await repository.updateAanwezigheid(id, {firstname, lastname, tak});
+const updateAanwezigheid = async (id) => {
+    debugLog('Updating leden', {id});
+    return await repository.updateAanwezigheid(id);
 };
 
 const deleteById = async (id) => {

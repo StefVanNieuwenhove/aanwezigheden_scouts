@@ -32,14 +32,15 @@ const create = async ({firstname, lastname, tak}) => {
     }
 };
 
-const updateAanwezigheid = async (id, {firstname, lastname, tak}) => {
+const updateAanwezigheid = async (id) => {
     try {
-        const count = await getKnex()(tables.leden).where('id', id).select('aanwezig');
+        const [lid] = await getKnex()(tables.leden).where('id', id).select();
+        const count = lid.aanwezig + 1;
         await getKnex()(tables.leden).where('id', id).update({
-            firstname, 
-            lastname, 
-            tak, 
-            aanwezig: count += 1,
+            //firstname, 
+            //lastname, 
+            //tak, 
+            aanwezig: count,
         });
         return findById(id);
     } catch (error) {

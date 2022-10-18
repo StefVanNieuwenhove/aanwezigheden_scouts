@@ -2,11 +2,19 @@ const Koa = require("koa");
 const config = require("config");
 const koaCors = require("@koa/cors");
 const bodyParser = require("koa-bodyparser");
-const { initializeLogger, getLogger } = require("./core/logging");
-const { initializeData, shutdownData } = require("./data");
+const {
+    initializeLogger,
+    getLogger
+} = require("./core/logging");
+const {
+    initializeData,
+    shutdownData
+} = require("./data");
 const installRest = require("./rest");
 const emoji = require("node-emoji");
-const serializeError = import("serialize-error");
+const {
+    serializeError
+} = require("serialize-error");
 const ServiceError = require("./core/serviceError");
 
 const NODE_ENV = config.get("env");

@@ -20,7 +20,7 @@ const create = async (ctx) => {
 };
 
 const updateAanwezigheid = async (ctx) => {
-    ctx.body = await service.updateAanwezigheid(ctx.params.id, ctx.request.body);
+    ctx.body = await service.updateAanwezigheid(ctx.params.id);
 };
 
 const remove = async (ctx) => {
