@@ -337,7 +337,7 @@ export default function NavBar() {
             </Link>
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3,}}>
         <DrawerHeader />
       </Box>
     </Box>

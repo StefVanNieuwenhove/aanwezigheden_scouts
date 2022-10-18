@@ -1,7 +1,10 @@
 import React from 'react'
+import TableData from '../components/TableData'
 
 export default function Kapoenen() {
   return (
-    <div>Kapoenen</div>
+    <>
+      <TableData tak='kapoen' />
+    </>
   )
 }
