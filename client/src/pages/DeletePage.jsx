@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Snackbar, Alert } from '@mui/material';
+import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Snackbar } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import { IconButton, Slide } from '@mui/material';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import React from 'react';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 let count;
 
@@ -25,8 +31,8 @@ export default function DeletePage() {
     const onDeleteHandler = (id, newState) => {
       axios.delete(`http://localhost:9000/api/leden/${id}`)
           .then((res) => {});
-      
-      setState({open: true, ...newState});
+      window.location.reload();
+      setState({open: true, ...newState});      
     };
 
     const handleClose = (event, reason) => {
@@ -40,7 +46,7 @@ export default function DeletePage() {
       return <Slide {...props} direction="up" />;
     }
 
-    const row = ['#', 'Firstname', 'Lastname', 'Tak', '# aanwezigheden'];
+    const row = ['#', 'Firstname', 'Lastname', 'Tak', '# aanwezigheden', 'Delete'];
 
   return (
     <>
@@ -50,7 +56,7 @@ export default function DeletePage() {
           <TableRow >
           {row.map((item) => (
               <TableCell sx={{ 
-                bgcolor: 'lightblue', 
+                bgcolor: 'success.light', 
                 width: '5rem', 
                 textAlign: 'center', 
                 textDecoration: 'underline',
@@ -60,16 +66,6 @@ export default function DeletePage() {
                 {item} 
                 </TableCell>
             ))}
-            <TableCell sx={{ 
-              bgcolor: 'lightblue', 
-              fontWeight: 'bold', 
-              width: '5rem', 
-              textAlign: 'center', 
-              textDecoration: 'underline',
-              borderBlock: '1px solid black'
-              }}> 
-              Delete
-              </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -106,7 +102,7 @@ export default function DeletePage() {
         autoHideDuration={6000}
         TransitionComponent={transitionUp}
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity='success' sx={{width: '100%'}}>
           Lid is verwijderd!
         </Alert>
       </Snackbar>
