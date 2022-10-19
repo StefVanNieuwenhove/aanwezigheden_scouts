@@ -1,7 +1,10 @@
 import React from 'react'
+import TableData from '../components/TableData'
 
 export default function Jonggivers() {
   return (
-    <div>Jonggivers</div>
+    <>
+      <TableData tak='jonggiver' />
+    </>
   )
 }

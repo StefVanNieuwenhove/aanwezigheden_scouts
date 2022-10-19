@@ -1,7 +1,10 @@
 import React from 'react'
+import TableData from '../components/TableData'
 
 export default function Wouters() {
   return (
-    <div>Wouters</div>
+    <>
+      <TableData tak='wouter' />
+    </>
   )
 }

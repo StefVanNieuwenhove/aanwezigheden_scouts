@@ -34,8 +34,8 @@ module.exports = (app) => {
     });
 
     router.get('/', getAll);
-    router.get('/:id', getById);
-    router.get('/tak/:tak', getByTak);
+    router.get('/id/:id', getById);
+    router.get('/:tak', getByTak);
     router.post('/', create);
     router.put('/:id', updateAanwezigheid);
     router.delete('/:id', remove);

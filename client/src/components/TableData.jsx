@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -9,71 +8,46 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
 export default function TableData(tak) {
+
+    const obj = {...tak};
+    const takName = obj.tak;
+    let count;
 
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:9000/api/leden/${tak}`)
-        .then((res) => setData(res.data));
-    }, []);
+      axios.get(`http://localhost:9000/api/leden/${takName}`)
+      .then((res) => setData(res.data));
+    }, [tak]);
+    
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+    <TableContainer component={Paper} sx={{marginLeft: '4.05rem'}}>
+      <Table stickyHeader={true} >
+        <TableHead >
+          <TableRow >
+            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>#</TableCell>
+            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>Firstname</TableCell>
+            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>Lastname</TableCell>
+            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>Tak</TableCell>
+            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}># aanwezigheden</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-            </StyledTableRow>
-          ))}
+          {
+            data.map((lid, id) => (
+              count = id + 1,
+              <TableRow key={lid.id}>
+                <TableCell>{count}</TableCell>
+                <TableCell>{lid.firstname}</TableCell>
+                <TableCell>{lid.lastname}</TableCell>
+                <TableCell>{lid.tak}</TableCell>
+                <TableCell>{lid.aanwezig}</TableCell>
+              </TableRow>
+            ))
+          }
         </TableBody>
       </Table>
     </TableContainer>

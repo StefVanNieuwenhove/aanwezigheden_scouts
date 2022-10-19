@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import TableData from '../components/TableData';
 
 export default function Jins() {
   return (
-    <div>Jins</div>
+    <>
+      <TableData tak='jin' />
+    </>
   )
 }

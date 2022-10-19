@@ -136,12 +136,13 @@ export default function NavBar() {
         <Divider />
         <List>
             <Link to='/'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black',  }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
+                    textDecoration: 'none'
                     }}
                 >
                     <ListItemIcon
@@ -154,14 +155,14 @@ export default function NavBar() {
                     >
                         <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
+                    <ListItemText sx={{ opacity: open ? 1 : 0, textDecoration: 'none' }} >
                         Home
                     </ListItemText>
                 </ListItemButton>
                 </ListItem>
             </Link>
             <Link to='/kapoenen'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -186,7 +187,7 @@ export default function NavBar() {
                 </ListItem>
             </Link>
             <Link to='/wouters'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -211,7 +212,7 @@ export default function NavBar() {
                 </ListItem>
             </Link>
             <Link to='/jonggivers'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -236,7 +237,7 @@ export default function NavBar() {
                 </ListItem>
             </Link>
             <Link to='/givers'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -261,7 +262,7 @@ export default function NavBar() {
                 </ListItem>
             </Link>
             <Link to='/jins'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -286,7 +287,7 @@ export default function NavBar() {
                 </ListItem>
             </Link>
             <Link to='/add'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -311,7 +312,7 @@ export default function NavBar() {
                 </ListItem>
             </Link>
             <Link to='/delete'>
-                <ListItem disablePadding sx={{ display: 'block' }}>
+                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
                 <ListItemButton
                     sx={{
                     minHeight: 48,
@@ -337,7 +338,7 @@ export default function NavBar() {
             </Link>
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3,}}>
+      <Box component="main">
         <DrawerHeader />
       </Box>
     </Box>

@@ -7,11 +7,11 @@ const findAll = async () => {
 };
 
 const findById = async (id) => {
-    return getKnex()(tables.leden).select().where('id', id);
+    return getKnex()(tables.leden).where('id', id).first();
 };
 
 const findBytak = async (tak) => {
-    return getKnex()(tables.leden).select().where('tak', tak);
+    return getKnex()(tables.leden).where('tak', tak).select();
 };
 
 const create = async ({firstname, lastname, tak}) => {

@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import TableData from '../components/TableData';
 
 export default function Givers() {
   return (
-    <div>Givers</div>
+    <>
+      <TableData tak='giver' />
+    </>
   )
 }
