@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table } from '@mui/material';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -22,17 +22,26 @@ export default function TableData(tak) {
       .then((res) => setData(res.data));
     }, [tak]);
     
+    const row = ['#', 'Firstname', 'Lastname', 'Tak', '# aanwezigheden'];
 
   return (
-    <TableContainer component={Paper} sx={{marginLeft: '4.05rem'}}>
+    <>
+      <TableContainer component={Paper}  sx={{marginLeft: '4rem', display: 'flex', maxWidth: '95.5%'}}>
       <Table stickyHeader={true} >
         <TableHead >
-          <TableRow >
-            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>#</TableCell>
-            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>Firstname</TableCell>
-            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>Lastname</TableCell>
-            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}>Tak</TableCell>
-            <TableCell sx={{ bgcolor: 'success.light', fontStyle: 'bold'}}># aanwezigheden</TableCell>
+          <TableRow>
+            {row.map((item) => (
+              <TableCell sx={{ 
+                bgcolor: 'secondary.main', 
+                width: '5rem', 
+                textAlign: 'center', 
+                textDecoration: 'underline',
+                borderBlock: '1px solid black',
+                fontWeight: 'bold'
+                }}> 
+                {item} 
+                </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,17 +49,18 @@ export default function TableData(tak) {
             data.map((lid, id) => (
               count = id + 1,
               <TableRow key={lid.id}>
-                <TableCell>{count}</TableCell>
-                <TableCell>{lid.firstname}</TableCell>
-                <TableCell>{lid.lastname}</TableCell>
-                <TableCell>{lid.tak}</TableCell>
-                <TableCell>{lid.aanwezig}</TableCell>
+                <TableCell sx={{width: '5rem', textAlign: 'center', borderBottom: '1px solid black'}}>{count}</TableCell>
+                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.firstname}</TableCell>
+                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.lastname}</TableCell>
+                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.tak}</TableCell>
+                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.aanwezig}</TableCell>
               </TableRow>
             ))
           }
         </TableBody>
       </Table>
-    </TableContainer>
+      </TableContainer>
+    </>
   );
 }
 

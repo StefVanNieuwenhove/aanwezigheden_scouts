@@ -23,8 +23,8 @@ import LooksTwoIcon from '@mui/icons-material/LooksTwo';
 import Looks3Icon from '@mui/icons-material/Looks3';
 import Looks4Icon from '@mui/icons-material/Looks4';
 import Looks5Icon from '@mui/icons-material/Looks5';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 
 const drawerWidth = 240;
 
@@ -79,6 +79,7 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
+    border: '1px solid #000',
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
@@ -109,7 +110,7 @@ export default function NavBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar>
+        <Toolbar sx={{border: '1px solid black'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -127,7 +128,7 @@ export default function NavBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" open={open} sx={{border: '1px solid black'}}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -178,7 +179,7 @@ export default function NavBar() {
                         color: 'black'
                     }}
                     >
-                        <LooksOneIcon sx={{color: '#D1D100'}} />
+                        <LooksOneIcon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Kapoenen
@@ -203,7 +204,7 @@ export default function NavBar() {
                         color: 'black'
                     }}
                     >
-                        <LooksTwoIcon sx={{color: '#8AC7DB'}} />
+                        <LooksTwoIcon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Wouters
@@ -228,7 +229,7 @@ export default function NavBar() {
                         color: 'black'
                     }}
                     >
-                        <Looks3Icon sx={{color: 'orange'}} />
+                        <Looks3Icon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Jonggivers
@@ -253,7 +254,7 @@ export default function NavBar() {
                         color: 'black'
                     }}
                     >
-                        <Looks4Icon sx={{color: '#0000FF'}} />
+                        <Looks4Icon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Givers
@@ -278,7 +279,7 @@ export default function NavBar() {
                         color: 'black'
                     }}
                     >
-                        <Looks5Icon sx={{color: '#880808'}} />
+                        <Looks5Icon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Jins
@@ -303,7 +304,7 @@ export default function NavBar() {
                         color: 'black'
                     }}
                     >
-                        <AddBoxIcon sx={{color: 'green'}} />
+                        <PersonAddAlt1Icon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Toevoegen
@@ -328,7 +329,7 @@ export default function NavBar() {
                         color: 'black',
                     }}
                     >
-                        <HighlightOffIcon sx={{color: 'red'}} />
+                        <PersonRemoveIcon sx={{color: 'black'}} />
                     </ListItemIcon>
                     <ListItemText sx={{ opacity: open ? 1 : 0 }} >
                         Verwijderen

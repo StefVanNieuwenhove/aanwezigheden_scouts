@@ -3,7 +3,7 @@ const { tables, getKnex } = require("../data/index");
 const { getChildLogger } = require("../core/logging");
 
 const findAll = async () => {
-    return getKnex()(tables.leden).select();
+    return getKnex()(tables.leden).select().orderBy('firstname', 'ASC');
 };
 
 const findById = async (id) => {
