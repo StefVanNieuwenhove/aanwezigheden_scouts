@@ -32,7 +32,7 @@ export default function TableData(tak) {
           <TableRow>
             {row.map((item) => (
               <TableCell sx={{ 
-                bgcolor: 'secondary.main', 
+                bgcolor: 'success.light', 
                 width: '5rem', 
                 textAlign: 'center', 
                 textDecoration: 'underline',
