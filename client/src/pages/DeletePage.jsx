@@ -31,8 +31,8 @@ export default function DeletePage() {
     const onDeleteHandler = (id, newState) => {
       axios.delete(`http://localhost:9000/api/leden/${id}`)
           .then((res) => {});
-      window.location.reload();
-      setState({open: true, ...newState});      
+      //window.location.reload();
+      setState({open: true, ...newState});      // TODO - snackbar wordt maar kort getoond omdat deze wordt verwijderd als de pagina herhaald - hoe oplossen? - https://stackoverflow.com/questions/63424436/how-to-keep-mui-snackbar-open-when-page-is-reloaded
     };
 
     const handleClose = (event, reason) => {
@@ -94,15 +94,17 @@ export default function DeletePage() {
         </TableBody>
       </Table>
       </TableContainer>
-      <Snackbar 
+      <Snackbar  // TODO - Alert gooien om de bevestiging te vragen om lid te verwijderen - Dialog? - https://mui.com/components/dialogs/
         anchorOrigin={{ vertical, horizontal }}
         open={open}
         onClose={handleClose}
         key={vertical + horizontal}
         autoHideDuration={6000}
+        resumeHideDuration={3000}
+        transitionDuration={ { enter: 1000, exit: 1000, }}
         TransitionComponent={transitionUp}
       >
-        <Alert onClose={handleClose} severity='success' sx={{width: '100%'}}>
+        <Alert onClose={handleClose} severity='success' variant='filled' sx={{width: '100%'}}>
           Lid is verwijderd!
         </Alert>
       </Snackbar>
