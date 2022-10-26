@@ -154,9 +154,8 @@ export default function TableData(tak) {
                         <Button
                           component="button"
                           value={lid.id}
-                          variant="outlined"
+                          variant="contained"
                           color="success"
-                          //onClick={(e) => isAanwezig(e.target.value)}
                           onClick={(e) => openAanwezig(e.target.value)}
                         >
                           Aanwezig
@@ -164,7 +163,7 @@ export default function TableData(tak) {
                         <Button
                           component="button"
                           value={lid.id}
-                          variant="outlined"
+                          variant="contained"
                           color="error"
                           onClick={(e) => openVerwijderen(e.target.value)}
                         >
