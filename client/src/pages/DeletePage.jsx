@@ -1,113 +1,177 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Snackbar } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
-import { IconButton, Slide } from '@mui/material';
+import {
+  Table,
+  TableContainer,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Paper,
+  Button,
+  Container,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from '@mui/material';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
-import React from 'react';
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 let count;
 
+const row = ['#', 'Firstname', 'Lastname', 'Tak', '# aanwezigheden', 'Delete'];
+
 export default function DeletePage() {
+  const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState('');
 
-    const [data, setData] = useState([]);
-    const [state, setState] = useState({
-        open: false,
-        vertical: 'top',
-        horizontal: 'center',
-    });
-
-    const { vertical, horizontal, open } = state;
-
-    useEffect(() => {
-      axios.get(`http://localhost:9000/api/leden/`)
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/api/leden/`)
       .then((res) => setData(res.data));
-    }, []);
+  }, []);
 
-    const onDeleteHandler = (id, newState) => {
-      axios.delete(`http://localhost:9000/api/leden/${id}`)
-          .then((res) => { setState({open: true, ...newState});});
+  const onDeleteHandler = () => {
+    axios.delete(`http://localhost:9000/api/leden/${id}`).then((res) => {
       window.location.reload();
-           // TODO - snackbar wordt maar kort getoond omdat deze wordt verwijderd als de pagina herhaald - hoe oplossen? - https://stackoverflow.com/questions/63424436/how-to-keep-mui-snackbar-open-when-page-is-reloaded
-    };
+    });
+  };
 
-    const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-      setState({ ...state, open: false });
-    };
+  const handleOpen = (e) => {
+    setId(e);
+    console.log(e);
+    setOpen(true);
+  };
 
-    const transitionUp = (props) => {
-      return <Slide {...props} direction="up" />;
-    }
-
-    const row = ['#', 'Firstname', 'Lastname', 'Tak', '# aanwezigheden', 'Delete'];
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
-      <TableContainer component={Paper} sx={{marginLeft: '4.05rem', maxWidth: '95.5%', display: 'flex'}}>
-      <Table stickyHeader={true} >
-        <TableHead >
-          <TableRow >
-          {row.map((item) => (
-              <TableCell sx={{ 
-                bgcolor: 'success.light', 
-                width: '5rem', 
-                textAlign: 'center', 
-                textDecoration: 'underline',
-                borderBlock: '1px solid black',
-                fontWeight: 'bold'
-                }}> 
-                {item} 
-                </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {
-            data.map((lid, id) => (
-              count = id + 1,
-              <TableRow key={lid.id}>
-                <TableCell sx={{width: '5rem', textAlign: 'center', borderBottom: '1px solid black'}}>{count}</TableCell>
-                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.firstname}</TableCell>
-                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.lastname}</TableCell>
-                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.tak}</TableCell>
-                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>{lid.aanwezig}</TableCell>
-                <TableCell sx={{width: '10rem', textAlign: 'center', borderBottom: '1px solid black'}}>
-                  <IconButton
-                   aria-label='delete' 
-                   onClick={() => 
-                    onDeleteHandler(lid.id, 
-                    {vertical: 'bottom', horizontal: 'right'})} 
+      <Container maxWidth="xl">
+        <TableContainer component={Paper} sx={{ marginLeft: '1.5rem' }}>
+          <Table stickyHeader={true}>
+            <TableHead>
+              <TableRow>
+                {row.map((item) => (
+                  <TableCell
+                    sx={{
+                      bgcolor: 'success.light',
+                      width: '5rem',
+                      textAlign: 'center',
+                      textDecoration: 'underline',
+                      borderBlock: '1px solid black',
+                      fontWeight: 'bold',
+                    }}
                   >
-                    <DeleteForeverRoundedIcon sx={{color: 'red'}} />
-                  </IconButton>
-                </TableCell>
+                    {item}
+                  </TableCell>
+                ))}
               </TableRow>
-            ))
-          }
-        </TableBody>
-      </Table>
-      </TableContainer>
-      <Snackbar  // TODO - Alert gooien om de bevestiging te vragen om lid te verwijderen - Dialog? - https://mui.com/components/dialogs/
-        anchorOrigin={{ vertical, horizontal }}
+            </TableHead>
+            <TableBody>
+              {data.map(
+                (lid, id) => (
+                  (count = id + 1),
+                  (
+                    <TableRow key={lid.id}>
+                      <TableCell
+                        sx={{
+                          width: '5rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {count}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.firstname}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.lastname}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.tak}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.aanwezig}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        <Button
+                          variant="contained"
+                          color="error"
+                          startIcon={<DeleteForeverRoundedIcon />}
+                          value={lid.id}
+                          onClick={(e) => handleOpen(e.target.value)}
+                        >
+                          Verwijderd
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
+      <Dialog
         open={open}
         onClose={handleClose}
-        key={vertical + horizontal}
-        autoHideDuration={6000}
-        resumeHideDuration={3000}
-        transitionDuration={ { enter: 1000, exit: 1000, }}
-        TransitionComponent={transitionUp}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        <Alert onClose={handleClose} severity='success' variant='filled' sx={{width: '100%'}}>
-          Lid is verwijderd!
-        </Alert>
-      </Snackbar>
+        <DialogTitle id="alert-dialog-title">
+          {'Weet je zeker dat je dit lid wilt verwijderen?'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Als je dit lid verwijderd, kan je dit niet meer terugdraaien.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="contained" color="error">
+            Annuleren
+          </Button>
+          <Button onClick={onDeleteHandler} variant="contained" color="warning">
+            Verwijderen
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
-  )
+  );
 }

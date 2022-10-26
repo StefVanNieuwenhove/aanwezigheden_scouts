@@ -76,23 +76,23 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme, open }) => ({
-    width: drawerWidth,
-    border: '1px solid #000',
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    ...(open && {
-      ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
-    }),
-    ...(!open && {
-      ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
-    }),
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  width: drawerWidth,
+  border: '1px solid #000',
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  ...(open && {
+    ...openedMixin(theme),
+    '& .MuiDrawer-paper': openedMixin(theme),
   }),
-);
+  ...(!open && {
+    ...closedMixin(theme),
+    '& .MuiDrawer-paper': closedMixin(theme),
+  }),
+}));
 
 export default function NavBar() {
   const theme = useTheme();
@@ -110,7 +110,7 @@ export default function NavBar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{border: '1px solid black'}}>
+        <Toolbar sx={{ border: '1px solid black' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -128,215 +128,224 @@ export default function NavBar() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} sx={{border: '1px solid black'}}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        sx={{ border: '1px solid black' }}
+        w
+      >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-            <Link to='/'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black',  }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    textDecoration: 'none'
-                    }}
+          <Link to="/">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                  textDecoration: 'none',
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0, textDecoration: 'none' }} >
-                        Home
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/kapoenen'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText
+                  sx={{ opacity: open ? 1 : 0, textDecoration: 'none' }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <LooksOneIcon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Kapoenen
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/wouters'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  Home
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/kapoenen">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <LooksTwoIcon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Wouters
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/jonggivers'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  <LooksOneIcon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  Kapoenen
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/wouters">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <Looks3Icon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Jonggivers
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/givers'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  <LooksTwoIcon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  Wouters
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/jonggivers">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <Looks4Icon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Givers
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/jins'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  <Looks3Icon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  Jonggivers
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/givers">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <Looks5Icon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Jins
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/add'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  <Looks4Icon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  Givers
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/jins">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black'
-                    }}
-                    >
-                        <PersonAddAlt1Icon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Toevoegen
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
-            <Link to='/delete'>
-                <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
-                <ListItemButton
-                    sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                    }}
+                  <Looks5Icon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>Jins</ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/add">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
                 >
-                    <ListItemIcon
-                    sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : 'auto',
-                        justifyContent: 'center',
-                        color: 'black',
-                    }}
-                    >
-                        <PersonRemoveIcon sx={{color: 'black'}} />
-                    </ListItemIcon>
-                    <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                        Verwijderen
-                    </ListItemText>
-                </ListItemButton>
-                </ListItem>
-            </Link>
+                  <PersonAddAlt1Icon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  Toevoegen
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link to="/delete">
+            <ListItem disablePadding sx={{ display: 'block', color: 'black' }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                    color: 'black',
+                  }}
+                >
+                  <PersonRemoveIcon sx={{ color: 'black' }} />
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }}>
+                  Verwijderen
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
       <Box component="main">

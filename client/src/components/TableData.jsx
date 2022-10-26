@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   Button,
+  Container,
   Dialog,
   DialogActions,
   DialogContent,
@@ -69,116 +70,115 @@ export default function TableData(tak) {
 
   return (
     <>
-      <TableContainer
-        component={Paper}
-        sx={{ marginLeft: '4rem', display: 'flex', maxWidth: '95.5%' }}
-      >
-        <Table stickyHeader={true}>
-          <TableHead>
-            <TableRow>
-              {row.map((item) => (
-                <TableCell
-                  key={item}
-                  sx={{
-                    bgcolor: 'success.light',
-                    width: '5rem',
-                    textAlign: 'center',
-                    textDecoration: 'underline',
-                    borderBlock: '1px solid black',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {item}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map(
-              (lid, id) => (
-                (count = id + 1),
-                (
-                  <TableRow key={lid.id}>
-                    <TableCell
-                      sx={{
-                        width: '5rem',
-                        textAlign: 'center',
-                        borderBottom: '1px solid black',
-                      }}
-                    >
-                      {count}
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        width: '10rem',
-                        textAlign: 'center',
-                        borderBottom: '1px solid black',
-                      }}
-                    >
-                      {lid.firstname}
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        width: '10rem',
-                        textAlign: 'center',
-                        borderBottom: '1px solid black',
-                      }}
-                    >
-                      {lid.lastname}
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        width: '10rem',
-                        textAlign: 'center',
-                        borderBottom: '1px solid black',
-                      }}
-                    >
-                      {lid.tak}
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        width: '10rem',
-                        textAlign: 'center',
-                        borderBottom: '1px solid black',
-                      }}
-                    >
-                      {lid.aanwezig}
-                    </TableCell>
-                    <TableCell
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'space-evenly',
-                        textAlign: 'center',
-                        borderBottom: '1px solid black',
-                      }}
-                    >
-                      <Button
-                        component="button"
-                        value={lid.id}
-                        variant="outlined"
-                        color="success"
-                        //onClick={(e) => isAanwezig(e.target.value)}
-                        onClick={(e) => openAanwezig(e.target.value)}
+      <Container maxWidth="xl" sx={{ margin: 'auto' }}>
+        <TableContainer component={Paper} sx={{ marginLeft: '1.5rem' }}>
+          <Table stickyHeader={true}>
+            <TableHead>
+              <TableRow>
+                {row.map((item) => (
+                  <TableCell
+                    key={item}
+                    sx={{
+                      bgcolor: 'success.light',
+                      width: '5rem',
+                      textAlign: 'center',
+                      textDecoration: 'underline',
+                      borderBlock: '1px solid black',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {item}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map(
+                (lid, id) => (
+                  (count = id + 1),
+                  (
+                    <TableRow key={lid.id}>
+                      <TableCell
+                        sx={{
+                          width: '5rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
                       >
-                        Aanwezig
-                      </Button>
-                      <Button
-                        component="button"
-                        value={lid.id}
-                        variant="outlined"
-                        color="error"
-                        onClick={(e) => openVerwijderen(e.target.value)}
+                        {count}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
                       >
-                        Delete aanwezig
-                      </Button>
-                    </TableCell>
-                  </TableRow>
+                        {lid.firstname}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.lastname}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.tak}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          width: '10rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        {lid.aanwezig}
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-evenly',
+                          textAlign: 'center',
+                          borderBottom: '1px solid black',
+                        }}
+                      >
+                        <Button
+                          component="button"
+                          value={lid.id}
+                          variant="outlined"
+                          color="success"
+                          //onClick={(e) => isAanwezig(e.target.value)}
+                          onClick={(e) => openAanwezig(e.target.value)}
+                        >
+                          Aanwezig
+                        </Button>
+                        <Button
+                          component="button"
+                          value={lid.id}
+                          variant="outlined"
+                          color="error"
+                          onClick={(e) => openVerwijderen(e.target.value)}
+                        >
+                          Delete aanwezig
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  )
                 )
-              )
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
       <Dialog
         open={aanwezig}
         onClose={closeAanwezig}

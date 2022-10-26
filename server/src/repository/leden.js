@@ -11,7 +11,7 @@ const findById = async (id) => {
 };
 
 const findBytak = async (tak) => {
-    return getKnex()(tables.leden).where('tak', tak).select();
+    return getKnex()(tables.leden).where('tak', tak).select().orderBy('firstname', 'ASC');
 };
 
 const create = async ({firstname, lastname, tak}) => {
