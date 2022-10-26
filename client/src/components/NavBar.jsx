@@ -132,7 +132,6 @@ export default function NavBar() {
         variant="permanent"
         open={open}
         sx={{ border: '1px solid black' }}
-        w
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
