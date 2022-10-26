@@ -11,6 +11,6 @@ module.exports = {
       });
     },
     down: async (knex) => {
-      return knex.schema.dropTableIfExists(tables.leden);
+      //return knex.schema.dropTableIfExists(tables.leden);
     },
   };

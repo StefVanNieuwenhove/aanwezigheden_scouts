@@ -19,7 +19,14 @@ import Paper from '@mui/material/Paper';
 // useRef,
 // via hendle button naar server
 
-const row = ['#', 'Firstname', 'Lastname', 'Tak', '# aanwezigheden', ''];
+const row = [
+  '#',
+  'Firstname',
+  'Lastname',
+  'Tak',
+  '# aanwezigheden',
+  'Bewerking',
+];
 
 export default function TableData(tak) {
   const obj = { ...tak };
@@ -193,14 +200,14 @@ export default function TableData(tak) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeAanwezig} color="error" variant="outlined">
+          <Button onClick={closeAanwezig} color="error" variant="contained">
             Niet toevoegen
           </Button>
           <Button
             onClick={() => isAanwezig()}
             autoFocus
             color="success"
-            variant="outlined"
+            variant="contained"
           >
             Toevoegen
           </Button>
@@ -221,14 +228,14 @@ export default function TableData(tak) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeVerwijderen} color="error" variant="outlined">
+          <Button onClick={closeVerwijderen} color="error" variant="contained">
             Niet verwijderen
           </Button>
           <Button
             onClick={() => nietAanwezig()}
             autoFocus
             color="success"
-            variant="outlined"
+            variant="contained"
           >
             verwijderen
           </Button>
