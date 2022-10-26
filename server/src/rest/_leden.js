@@ -19,8 +19,12 @@ const create = async (ctx) => {
     ctx.status = 201;
 };
 
-const updateAanwezigheid = async (ctx) => {
-    ctx.body = await service.updateAanwezigheid(ctx.params.id);
+const isAanwezigheid = async (ctx) => {
+    ctx.body = await service.isAanwezig(ctx.params.id);
+};
+
+const nietAanwezigheid = async (ctx) => {
+    ctx.body = await service.nietAanwezig(ctx.params.id);
 };
 
 const remove = async (ctx) => {
@@ -37,7 +41,8 @@ module.exports = (app) => {
     router.get('/id/:id', getById);
     router.get('/:tak', getByTak);
     router.post('/', create);
-    router.put('/:id', updateAanwezigheid);
+    router.put('/aanwezig/:id', isAanwezigheid);
+    router.put('/niet-aanwezig/:id', nietAanwezigheid);
     router.delete('/:id', remove);
 
     app.use(router.routes());

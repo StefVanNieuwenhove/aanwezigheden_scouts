@@ -27,9 +27,14 @@ const create = async ({firstname, lastname, tak}) => {
     return await repository.create({firstname, lastname, tak});
 };
 
-const updateAanwezigheid = async (id) => {
+const isAanwezig = async (id) => {
     debugLog('Updating leden', {id});
-    return await repository.updateAanwezigheid(id);
+    return await repository.isAanwezig(id);
+};
+
+const nietAanwezig = async (id) => {
+    debugLog('Updating leden', {id});
+    return await repository.nietAanwezig(id);
 };
 
 const deleteById = async (id) => {
@@ -42,6 +47,7 @@ module.exports = {
     getById,
     getByTak,
     create,
-    updateAanwezigheid,
+    isAanwezig,
+    nietAanwezig,
     deleteById,
 };

@@ -10,6 +10,7 @@
   "author": "Stef Van Nieuwenhove",
   "license": "MIT",
   "dependencies": {
+    "@appland/appmap-agent-js": "^11.5.3",
     "@koa/cors": "^4.0.0",
     "@koa/router": "^12.0.0",
     "config": "^3.3.8",

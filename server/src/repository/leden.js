@@ -32,10 +32,29 @@ const create = async ({firstname, lastname, tak}) => {
     }
 };
 
-const updateAanwezigheid = async (id) => {
+const isAanwezig = async (id) => {
     try {
         const [lid] = await getKnex()(tables.leden).where('id', id).select();
         const count = lid.aanwezig + 1;
+        await getKnex()(tables.leden).where('id', id).update({
+            //firstname, 
+            //lastname, 
+            //tak, 
+            aanwezig: count,
+        });
+        return findById(id);
+    } catch (error) {
+        const logger = getChildLogger('leden-repo');
+        logger.error('Error in updateAanwezigheid', {error});
+        throw error;
+    }
+};
+
+const nietAanwezig = async (id) => {
+    try {
+        const [lid] = await getKnex()(tables.leden).where('id', id).select();
+        const count = lid.aanwezig - 1;
+        if (count < 0) return;
         await getKnex()(tables.leden).where('id', id).update({
             //firstname, 
             //lastname, 
@@ -65,6 +84,7 @@ module.exports = {
     findById,
     findBytak,
     create,
-    updateAanwezigheid,
+    isAanwezig,
+    nietAanwezig,
     deleteById,
 }

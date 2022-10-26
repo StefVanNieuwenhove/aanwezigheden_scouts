@@ -30,9 +30,9 @@ export default function DeletePage() {
 
     const onDeleteHandler = (id, newState) => {
       axios.delete(`http://localhost:9000/api/leden/${id}`)
-          .then((res) => {});
-      //window.location.reload();
-      setState({open: true, ...newState});      // TODO - snackbar wordt maar kort getoond omdat deze wordt verwijderd als de pagina herhaald - hoe oplossen? - https://stackoverflow.com/questions/63424436/how-to-keep-mui-snackbar-open-when-page-is-reloaded
+          .then((res) => { setState({open: true, ...newState});});
+      window.location.reload();
+           // TODO - snackbar wordt maar kort getoond omdat deze wordt verwijderd als de pagina herhaald - hoe oplossen? - https://stackoverflow.com/questions/63424436/how-to-keep-mui-snackbar-open-when-page-is-reloaded
     };
 
     const handleClose = (event, reason) => {
