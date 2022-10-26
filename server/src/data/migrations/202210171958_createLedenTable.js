@@ -7,7 +7,7 @@ module.exports = {
         table.string("firstname").notNullable();
         table.string("lastname", 250).notNullable();
         table.string("tak", 250).notNullable();
-        table.integer('aanwezig');
+        table.integer('aanwezig').defaultTo(0);
       });
     },
     down: async (knex) => {
