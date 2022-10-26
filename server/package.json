@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx env-cmd nodemon src/index.js"
+    "start": "npx env-cmd nodemon src/index.js",
+    "build": ""
   },
   "author": "Stef Van Nieuwenhove",
   "license": "MIT",
@@ -22,6 +23,7 @@
     "mysql2": "^2.3.3",
     "node-emoji": "^1.11.0",
     "serialize-error": "^8.1.0",
+    "serve": "^14.0.1",
     "uuid": "^9.0.0",
     "winston": "^3.8.2"
   }
